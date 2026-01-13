@@ -1,0 +1,3 @@
+# Ignore local certificates and secrets
+certs/
+.env

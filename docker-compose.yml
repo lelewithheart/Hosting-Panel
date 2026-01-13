@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: panel-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: panel
+      MYSQL_USER: panel
+      MYSQL_PASSWORD: panelpass
+    ports:
+      - "3306:3306"
+    volumes:
+      - panel-mysql-data:/var/lib/mysql
+volumes:
+  panel-mysql-data:
