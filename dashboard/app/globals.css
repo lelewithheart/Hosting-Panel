@@ -32,30 +32,82 @@ body {
   color-scheme: light dark;
 }
 
-a { color: #2563eb; }
-@media (prefers-color-scheme: dark) { a { color: #93c5fd; } }
+a { 
+  color: #2563eb; 
+  transition: color 0.2s ease;
+}
+a:hover {
+  color: #1d4ed8;
+}
+@media (prefers-color-scheme: dark) { 
+  a { color: #93c5fd; }
+  a:hover { color: #bfdbfe; }
+}
 
 .surface { background: var(--surface); }
 .muted { background: var(--muted); }
 .bordered { border: 1px solid var(--border); }
 
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.animate-slideInFromLeft {
+  animation: slideInFromLeft 0.5s ease-out;
+}
+
 /* Code block styling for readability in light/dark */
 pre.code-block {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 20px;
   overflow-x: auto;
-  color: #111827; /* ensure dark text on light background */
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  line-height: 1.7;
 }
+
 @media (prefers-color-scheme: dark) {
-  pre.code-block { background: #0f172a; border-color: #334155; color: #e5e7eb; }
+  pre.code-block { 
+    background: #0f172a; 
+    border-color: #1e293b; 
+    color: #e5e7eb; 
+  }
 }
 
 code {
   font-family: var(--font-geist-mono, ui-monospace, SFMono-Regular, Menlo, Monospace);
   font-size: 0.9rem;
-  line-height: 1.5;
+  line-height: 1.6;
   color: var(--foreground);
 }
 
@@ -66,35 +118,90 @@ textarea {
   background: var(--surface);
   color: var(--foreground);
   border: 1px solid var(--border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+select:focus,
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Enhanced button styles */
+button {
+  transition: all 0.2s ease;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 /* Basic token colors for better contrast */
 code .token.comment,
 code .token.prolog,
 code .token.doctype,
-code .token.cdata { color: #6b7280; }
+code .token.cdata { color: #64748b; }
 
-code .token.punctuation { color: #9ca3af; }
+code .token.punctuation { color: #94a3b8; }
 code .token.property,
 code .token.tag,
 code .token.constant,
-code .token.symbol { color: #2563eb; }
+code .token.symbol { color: #60a5fa; }
 code .token.boolean,
-code .token.number { color: #f59e0b; }
+code .token.number { color: #fbbf24; }
 code .token.selector,
 code .token.attr-name,
 code .token.string,
 code .token.char,
 code .token.builtin,
-code .token.inserted { color: #10b981; }
+code .token.inserted { color: #34d399; }
 code .token.operator,
 code .token.entity,
 code .token.url,
 code .language-css .token.string,
-code .style .token.string { color: #ec4899; }
+code .style .token.string { color: #f472b6; }
 code .token.atrule,
 code .token.attr-value,
-code .token.keyword { color: #8b5cf6; }
+code .token.keyword { color: #a78bfa; }
 code .token.regex,
 code .token.important,
-code .token.variable { color: #ef4444; }
+code .token.variable { color: #fb7185; }
+
+/* Loading spinner */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Skeleton loader */
+@keyframes skeleton-loading {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 0px, #f8f8f8 40px, #f0f0f0 80px);
+  background-size: 200px 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .skeleton {
+    background: linear-gradient(90deg, #1f2937 0px, #374151 40px, #1f2937 80px);
+  }
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
