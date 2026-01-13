@@ -289,8 +289,12 @@ export default function Home() {
               onClick={() => {
                 const code = document.querySelector('.code-block code')?.textContent;
                 if (code) {
-                  navigator.clipboard.writeText(code);
-                  alert('Copied to clipboard!');
+                  try {
+                    navigator.clipboard.writeText(code);
+                    // Success - could be replaced with toast notification in future
+                  } catch (err) {
+                    console.error('Failed to copy:', err);
+                  }
                 }
               }}
               className="flex items-center gap-1 text-xs text-gray-300 hover:text-white transition-colors px-3 py-1 rounded bg-gray-700 hover:bg-gray-600"

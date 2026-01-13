@@ -134,8 +134,12 @@ setInterval(() => {}, 1000);
 {
   "scripts": { "start": "node index.js" }
 }`;
-                navigator.clipboard.writeText(code);
-                alert('Copied to clipboard!');
+                try {
+                  navigator.clipboard.writeText(code);
+                  // Success - could be replaced with toast notification in future
+                } catch (err) {
+                  console.error('Failed to copy:', err);
+                }
               }}
               className="text-xs text-white/80 hover:text-white transition-colors px-3 py-1 rounded bg-white/10 hover:bg-white/20"
             >
@@ -170,8 +174,12 @@ while True:
 
 # optional requirements.txt
 # (empty or with dependencies)`;
-                navigator.clipboard.writeText(code);
-                alert('Copied to clipboard!');
+                try {
+                  navigator.clipboard.writeText(code);
+                  // Success - could be replaced with toast notification in future
+                } catch (err) {
+                  console.error('Failed to copy:', err);
+                }
               }}
               className="text-xs text-white/80 hover:text-white transition-colors px-3 py-1 rounded bg-white/10 hover:bg-white/20"
             >
