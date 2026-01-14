@@ -10,7 +10,7 @@ services:
       MYSQL_USER: panel
       MYSQL_PASSWORD: panelpass
     ports:
-      - "3306:3306"
+      - "3310:3306"
     volumes:
       - panel-mysql-data:/var/lib/mysql
 volumes:
